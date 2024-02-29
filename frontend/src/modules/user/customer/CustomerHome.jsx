@@ -8,6 +8,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import AllPlans from './AllPlans';
 
 
 
@@ -89,18 +90,18 @@ const CustomerHome = () => {
          <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                  <Tab label="Items" {...a11yProps(0)} />
-                  <Tab label="Users" {...a11yProps(1)} />
-                  <Tab label="All Bookings" {...a11yProps(2)} />
+                  <Tab label="Plans" {...a11yProps(0)} />
+                  {/* <Tab label="Users" {...a11yProps(1)} />
+                  <Tab label="All Bookings" {...a11yProps(2)} /> */}
                </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-               <Items />
+               <AllPlans />
             </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
+            {/*<CustomTabPanel value={value} index={1}>
                <Users />
             </CustomTabPanel>
-            {/*<CustomTabPanel value={value} index={2}>
+            <CustomTabPanel value={value} index={2}>
                <AllItemBookings />
             </CustomTabPanel> */}
          </Box>

@@ -8,6 +8,7 @@ import p3 from "../../images/p3.jpg"
 import AllItems from '../admin/AllItems';
 import AllWorkoutPlans from '../user/trainer/AllWorkoutPlans';
 import AllMonthlyPlans from '../admin/AllMonthlyPlans';
+import BmiCalculator from './BmiCalculator';
 
 const Home = () => {
    const [index, setIndex] = useState(0);
@@ -65,6 +66,12 @@ const Home = () => {
             <div>
                <h1 className='m-3 text-center text-light'>All Equipments that may you looking for</h1>
                <AllItems />
+            </div>
+         </div>
+         <div className='second-container'>
+            <div>
+               <h1 className='m-3 text-center text-light'>Check Your BMI</h1>
+               <BmiCalculator />
             </div>
          </div>
       </div>
