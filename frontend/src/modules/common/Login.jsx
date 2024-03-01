@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,6 +11,7 @@ import axios from 'axios';
 import { message } from 'antd';
 import NavBar from './NavBar';
 import axiosInstance from './AxiosInstance';
+import { Container, Form, Row, Col, InputGroup } from 'react-bootstrap';
 
 const Login = () => {
    const navigate = useNavigate()
@@ -90,7 +90,7 @@ const Login = () => {
                   <Typography component="h1" variant="h5">
                      Sign In
                   </Typography>
-                  <Box
+                  {/* <Box
                      component="form"
                      onSubmit={handleSubmit}
                      noValidate
@@ -133,7 +133,44 @@ const Login = () => {
                            Sign Up
                         </Link></span>
                      </Box>
-                  </Box>
+                  </Box> */}
+                  <Form
+                     style={{ padding: '25px' }}
+                     onSubmit={handleSubmit}>
+                     <Row className="mb-3">
+                        <Form.Group as={Col} md="12">
+                           <Form.Label>Email</Form.Label>
+                           <Form.Control
+                              name="email"
+                              value={data.email}
+                              onChange={handleChange}
+                           />
+                        </Form.Group>
+                     </Row>
+                     <Row className="mb-3">
+                        <Form.Group as={Col} md="12">
+                           <Form.Label>Password</Form.Label>
+                           <InputGroup hasValidation>
+                              <Form.Control
+                                 name="password"
+                                 value={data.password}
+                                 onChange={handleChange}
+                                 type="password"
+                              />
+                           </InputGroup>
+                        </Form.Group>
+                     </Row>
+                     <div className="d-flex flex-column align-items-center my-5">
+                        <Button variant='contained' size="large" type='submit'
+                        // startIcon={<AddIcon />}
+                        >
+                           Sign In
+                        </Button>
+                        <span>Don`t have an account?<Link style={{ color: "#090987" }} to={'/register'} variant="body2">
+                           Sign Up
+                        </Link></span>
+                     </div>
+                  </Form>
                </Box>
             </Container>
          </div>

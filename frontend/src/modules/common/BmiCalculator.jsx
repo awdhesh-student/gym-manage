@@ -50,8 +50,9 @@ const BmiCalculator = () => {
    return (
       <Form style={{ padding: '25px' }} onSubmit={(e) => { e.preventDefault(); calBMI(values.feet, values.inches, values.weight); }}>
          <Row className="mb-3">
+            
             <Form.Group as={Col} md="4">
-               <Form.Label>Feet</Form.Label>
+               <Form.Label>Height (Feet)</Form.Label>
                <InputGroup hasValidation>
                   <Form.Control
                      type="number"
@@ -65,7 +66,7 @@ const BmiCalculator = () => {
                </InputGroup>
             </Form.Group>
             <Form.Group as={Col} md="4">
-               <Form.Label>Inches</Form.Label>
+               <Form.Label>Height (Inches)</Form.Label>
                <InputGroup hasValidation>
                   <Form.Control
                      type="number"
@@ -108,11 +109,13 @@ const BmiCalculator = () => {
                <DialogContentText id="alert-dialog-slide-description">
                   {values.bmi !== null ? <h2>Your BMI is: {values.bmi}</h2> : values.error}
                   
-                  BMI Categories:
-                  - Underweight = less than 18.5
-                  - Normal weight = 18.5–24.9
-                  - Overweight = 25–29.9
-                  - Obesity = BMI of 30 or greater
+                  <h6>BMI Categories:</h6>
+                  <ul>
+                     <li style={{color: 'black', fontSize: 10}}>Underweight = less than 18.5</li>
+                     <li style={{color: 'black', fontSize: 10}}>Normal weight = 18.5–24.9</li>
+                     <li style={{color: 'black', fontSize: 10}}>Overweight = 25–29.9</li>
+                     <li style={{color: 'black', fontSize: 10}}>Obesity = BMI of 30 or greater</li>
+                  </ul>
                </DialogContentText>
 
             </DialogContent>

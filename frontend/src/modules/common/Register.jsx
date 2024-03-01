@@ -11,17 +11,19 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import { message } from 'antd';
 import NavBar from './NavBar';
-import { Container, Dropdown } from 'react-bootstrap';
+import { Container, Dropdown, Form, Row, Col, InputGroup } from 'react-bootstrap';
 import axiosInstance from "./AxiosInstance"
 const Register = () => {
    const navigate = useNavigate()
 
    const [selectedOption, setSelectedOption] = useState('Select User');
    const [data, setData] = useState({
-      name: "",
+      fname: "",
+      lname: "",
       email: "",
       password: "",
       type: "",
+      bmi: ""
    })
 
    const handleChange = (e) => {
@@ -36,7 +38,7 @@ const Register = () => {
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      if (!data?.name || !data?.email || !data?.password) return alert("Please fill all fields");
+      if (!data?.fname || !data?.lname || !data?.email || !data?.password) return alert("Please fill all fields");
       else {
          axiosInstance.post('/api/user/register', data)
             .then((response) => {
@@ -67,7 +69,6 @@ const Register = () => {
                      alignItems: 'center',
                      padding: 5,
                      background: '#5a605fd4',
-                     //border: '1px solid lightblue',
                      borderRadius: '5px'
                   }}
                >
@@ -77,7 +78,7 @@ const Register = () => {
                   <Typography component="h1" variant="h5">
                      Sign up
                   </Typography>
-                  <Box component="form" onSubmit={handleSubmit} noValidate sx={{
+                  {/* <Box component="form" onSubmit={handleSubmit} noValidate sx={{
                      padding: "25px"
                   }}>
                      <TextField
@@ -123,6 +124,16 @@ const Register = () => {
                            <Dropdown.Item onClick={() => handleSelect("Trainer")}>Trainer</Dropdown.Item>
                         </Dropdown.Menu>
                      </Dropdown>
+                     <TextField
+                        margin="normal"
+                        fullWidth
+                        name="bmi"
+                        value={data.bmi}
+                        onChange={handleChange}
+                        label="Enter your bmi"
+                        type="text"
+                        id="bmi"
+                     />
                      <Box
                         mt={2}
                         className="d-flex flex-column align-items-center "
@@ -138,7 +149,98 @@ const Register = () => {
                            Sign In
                         </Link></span>
                      </Box>
-                  </Box>
+                  </Box> */}
+
+                  <Form
+                     style={{ padding: '25px' }}
+                     onSubmit={handleSubmit}>
+                     <Row className="mb-3">
+                        <Form.Group as={Col} md="6">
+                           <Form.Label>First Name</Form.Label>
+                           <InputGroup hasValidation>
+                              <Form.Control
+                                 name="name"
+                                 value={data.fname}
+                                 onChange={handleChange}
+                              />
+                           </InputGroup>
+                        </Form.Group>
+
+                        <Form.Group as={Col} md="6">
+                           <Form.Label>Last Name</Form.Label>
+                           <InputGroup hasValidation>
+                              <Form.Control
+                                 name="name"
+                                 value={data.lname}
+                                 onChange={handleChange}
+                              />
+                           </InputGroup>
+                        </Form.Group>
+
+                     </Row>
+                     <Row className="mb-3">
+                        <Form.Group as={Col} md="6">
+                           <Form.Label>Email</Form.Label>
+                           <Form.Control
+                              name="email"
+                              value={data.email}
+                              onChange={handleChange}
+                           />
+                        </Form.Group>
+                        <Form.Group as={Col} md="6">
+                           <Form.Label>Password</Form.Label>
+                           <InputGroup hasValidation>
+                              <Form.Control
+                                 name="password"
+                                 value={data.password}
+                                 onChange={handleChange}
+                                 type="password"
+                              />
+                           </InputGroup>
+                        </Form.Group>
+                     </Row>
+                     <Row className="d-flex flex-column align-items-center my-5">
+                        <Form.Group as={Col} md="12">
+                           <Form.Label>Your BMI</Form.Label>
+                           <InputGroup hasValidation>
+                              <Form.Control
+                                 // margin="normal"
+                                 // fullWidth
+                                 name="bmi"
+                                 value={data.bmi}
+                                 onChange={handleChange}
+                                 // label="Enter your bmi"
+                                 type="text"
+                              // id="bmi"
+                              />
+                           </InputGroup>
+
+                        </Form.Group>
+
+                        <Form.Group as={Col} md="6">
+                           <Dropdown className='my-2 mx-4'>
+                              <Dropdown.Toggle variant="contained-primary" id="dropdown-basic">
+                                 {selectedOption}
+                              </Dropdown.Toggle>
+
+                              <Dropdown.Menu>
+                                 <Dropdown.Item onClick={() => handleSelect("Customer")}>Customer</Dropdown.Item>
+                                 <Dropdown.Item onClick={() => handleSelect("Trainer")}>Trainer</Dropdown.Item>
+                              </Dropdown.Menu>
+                           </Dropdown>
+                        </Form.Group>
+                     </Row>
+                     <div className="d-flex flex-column align-items-center my-5">
+                        <Button variant='contained' size="large" type='submit'
+                        // startIcon={<AddIcon />}
+                        >
+                           Sign Up
+                        </Button>
+                        <span>Have an account?<Link style={{ color: "#090987" }} to={'/login'} variant="body2">
+                           Sign In
+                        </Link></span>
+                     </div>
+                  </Form>
                </Box>
             </Container>
          </div>

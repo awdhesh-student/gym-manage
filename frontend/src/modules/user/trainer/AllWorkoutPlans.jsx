@@ -113,7 +113,7 @@ const AllWorkoutPlans = () => {
 
    return (
       <Container>
-         <h1 className='my-5 text-center text-white'>All Workout Plans</h1>
+         {/* <h1 className='my-5 text-center text-white'>All Workout Plans</h1> */}
          <div className=" mt-4 filter-container text-center">
             <p className="mt-3">Filter By: </p>
             <select value={filterItemTarget} onChange={(e) => setItemTarget(e.target.value)}>
